@@ -13,8 +13,6 @@ from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 from langchain_core.tools import tool
-
-st.write(" App started")  
 from pathlib import Path
 
 # ── Page config ──────────────────────────────────────────────────────────────
