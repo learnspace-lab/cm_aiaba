@@ -13,6 +13,8 @@ from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 from langchain_core.tools import tool
+
+st.write("✅ App started")  
 from pathlib import Path
 
 # ── Page config ──────────────────────────────────────────────────────────────
@@ -21,7 +23,7 @@ st.set_page_config(
     page_icon="🛒",
     layout="centered",
 )
-st.write("✅ App started")  
+st.write("✅ App started_1")  
 
 # -- Get the path 
 root_fldr = Path(__file__).resolve().parent
