@@ -21,15 +21,18 @@ st.set_page_config(
     page_icon="🛒",
     layout="centered",
 )
+st.write("✅ App started")  
 
 # -- Get the path 
 root_fldr = Path(__file__).resolve().parent
 db_path = root_fldr / "connect.db"
 
+st.write("✅ Path Defined")  
 # Load the API Keys
 import streamlit as st
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"] # Loading the API Key
 OPENAI_API_BASE = st.secrets["OPENAI_API_BASE"] # Loading the API Base Url
+st.write("✅ API Keys read")  
 
 # Storing API credentials in environment variables
 os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
@@ -43,7 +46,7 @@ def load_llms():
     return llm, evaluate_llm
 
 llm, evaluate_llm = load_llms()
-
+st.write("✅ LLM started")  
 # ── State ─────────────────────────────────────────────────────────────────────
 class OrderState(TypedDict):
     cust_id:          str
@@ -96,6 +99,7 @@ def fetch_order_details(order_id: str) -> str:
     except Exception as e:
         return f"Database error while fetching order {order_id}: {str(e)}"
 
+st.write("✅ DB Read started")  
 # ── System prompt ─────────────────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are a Kartify Customer Service Agent. You help customers with questions about their orders.
 
