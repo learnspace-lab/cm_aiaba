@@ -27,7 +27,7 @@ st.write("✅ App started_1")
 
 # -- Get the path 
 root_fldr = Path(__file__).resolve().parent
-db_path = root_fldr / "connect.db"
+db_path = root_fldr / "kartify.db"
 
 st.write("✅ Path Defined")  
 # Load the API Keys
@@ -394,7 +394,7 @@ if "orders_df" not in st.session_state:
 # ── Helper: fetch customer orders ─────────────────────────────────────────────
 def fetch_customer_orders(cust_id: str) -> pd.DataFrame | None:
     try:
-        with sqlite3.connect("kartify.db") as conn:
+        with sqlite3.connect(db_path) as conn:
             df = pd.read_sql_query(
                 "SELECT order_id, product_description, order_status FROM orders WHERE customer_id = ?",
                 conn,
