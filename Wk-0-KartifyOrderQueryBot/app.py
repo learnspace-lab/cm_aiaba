@@ -13,7 +13,7 @@ from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 from langchain_core.tools import tool
-from pathlib import Path
+
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -23,6 +23,7 @@ st.set_page_config(
 )
 st.write("✅ App started_1")  
 
+from pathlib import Path
 # -- Get the path 
 root_fldr = Path(__file__).resolve().parent
 db_path = root_fldr / "kartify.db"
