@@ -13,6 +13,7 @@ from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 from langchain_core.tools import tool
+from pathlib import Path
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -21,8 +22,11 @@ st.set_page_config(
     layout="centered",
 )
 
+# -- Get the path 
+root_fldr = Path(__file__).resolve().parent
+db_path = root_fldr / "connect.db"
 
-# Load the JSON file and extract values
+# Load the API Keys
 import streamlit as st
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"] # Loading the API Key
 OPENAI_API_BASE = st.secrets["OPENAI_API_BASE"] # Loading the API Base Url
@@ -80,7 +84,7 @@ def fetch_order_details(order_id: str) -> str:
     if not re.match(r"^O\d+$", order_id.strip()):
         return f"Invalid order ID format: '{order_id}'. Expected format: O followed by digits (e.g. O40327)."
     try:
-        with sqlite3.connect("kartify.db") as conn:
+        with sqlite3.connect(db_path) as conn:
             df = pd.read_sql_query(
                 "SELECT * FROM orders WHERE order_id = ?",
                 conn,
